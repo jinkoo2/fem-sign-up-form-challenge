@@ -1,6 +1,59 @@
 
+const regExps = [/^[0-9a-zA-Z]{1,30}$/,
+                /^[0-9a-zA-Z]{1,30}$/,                                              
+                /^[^\s@]+@[^\s@]+\.[^\s@]+$/,           
+                /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]).{8,}$/
+            ]
+const inputIds = ['firstname', 'lastname', 'email', 'password']
+
+    // Password Requirement
+    // Contains at least one digit (\d)
+    // Contains at least one lowercase letter ([a-z])
+    // Contains at least one uppercase letter ([A-Z])
+    // Contains at least one special character ([!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?])
+    // Is at least 8 characters long (.{8,})
+
+
 function _(id){
     return document.getElementById(id)
+}
+
+function updateButton(){
+
+    console.log('updateButton')
+
+    let allPassed=true;
+    
+    for(let i=0; i<4; i++)
+    {
+        
+        const met = regExps[i].test(_(inputIds[i]).value);
+
+        console.log(regExps[i])
+        console.log(inputIds[i])
+        console.log('met', met)
+
+        if(!met)
+        {
+            allPassed = false
+            break;
+        }
+    }
+
+    if(allPassed)
+    {
+        console.log('pass')
+        // pass
+        _('claim_button').disabled = false;
+        _('claim_button').classList.remove('disabled');
+    }
+    else{
+        console.log('fail')
+        // fail
+        _('claim_button').disabled = true;
+        _('claim_button').classList.add('disabled');
+    }
+
 }
 
 function setupInput(id, rgx){
@@ -10,41 +63,20 @@ function setupInput(id, rgx){
         if(rgx.test(value)){
             // passed
             e.target.classList.remove('invalid')
-
-            _("claim_button").disabled=false;
-            _("claim_button").classList.remove('disabled')
-
-            // console.log('pass')
-            // console.log(e.target)
-            // console.log(_("claim_button"))
         }
         else{
             // failed
             e.target.classList.add('invalid')
-
-            _("claim_button").disabled=true;
-            _("claim_button").classList.add('disabled')
-
-            // console.log('fail')
-            // console.log(e.target)
-            // console.log(_("claim_button"))
         }
+
+        updateButton()
     })
 }
 
-document.addEventListener("DOMContentLoaded", function(event) {
-    // Your code to be executed after the HTML content has loaded goes here
-        
-    setupInput('firstname', /^[0-9a-zA-Z]{1,30}$/)
-    setupInput('lastname', /^[0-9a-zA-Z]{1,30}$/)
-    setupInput('email', /^[^\s@]+@[^\s@]+\.[^\s@]+$/)
-    setupInput('password', /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]).{8,}$/)
 
-    // Password Requirement
-    // Contains at least one digit (\d)
-    // Contains at least one lowercase letter ([a-z])
-    // Contains at least one uppercase letter ([A-Z])
-    // Contains at least one special character ([!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?])
-    // Is at least 8 characters long (.{8,})
+document.addEventListener("DOMContentLoaded", function(event) {
+    for(var i=0; i<4; i++)
+        setupInput(inputIds[i], regExps[i])
+
   });
 
