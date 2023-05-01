@@ -20,7 +20,6 @@ function _(id){
 
 function updateButton(){
 
-    console.log('updateButton')
 
     let allPassed=true;
     
@@ -28,10 +27,6 @@ function updateButton(){
     {
         
         const met = regExps[i].test(_(inputIds[i]).value);
-
-        console.log(regExps[i])
-        console.log(inputIds[i])
-        console.log('met', met)
 
         if(!met)
         {
@@ -42,13 +37,11 @@ function updateButton(){
 
     if(allPassed)
     {
-        console.log('pass')
         // pass
         _('claim_button').disabled = false;
         _('claim_button').classList.remove('disabled');
     }
     else{
-        console.log('fail')
         // fail
         _('claim_button').disabled = true;
         _('claim_button').classList.add('disabled');
