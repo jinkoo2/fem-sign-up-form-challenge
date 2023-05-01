@@ -22,7 +22,7 @@
 
 body{
     width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
     background-image: url("./images/bg-intro-mobile.png");
     background-color: var(--primary-red);
 
@@ -84,10 +84,23 @@ input, button {
     padding: 1rem;
     border-radius: 0.5rem;
     border: 1px solid rgb(230, 229, 229);
+    outline: none;
+}
+
+input:focus {
+    border-width: 2px;
+}
+
+input.invalid{
+   border-color: red;
+}
+
+button.disabled{
+    background-color: gray;
 }
 
 input::placeholder {
-        color: var(--neutral-dark-blue);
+        color: var(--neutral-dark-blue); 
         opacity: 1; /* Firefox */
 }
 
@@ -113,6 +126,8 @@ form button{
 section {
     
 }
+
+
 
 @media (min-width: 375px) {
     main{

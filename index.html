@@ -40,12 +40,12 @@
       </div>
       
       <form action="">
-        <input type="text" placeholder="First Name"/>
-        <input type="text" placeholder="Last Name"/>
-        <input type="text" placeholder="Email Address"/>
-        <input type="password" placeholder="Password"/>
+        <input type="text" id="firstname" placeholder="First Name" class="invalid"/>
+        <input type="text" id="lastname" placeholder="Last Name" class="invalid"/>
+        <input type="text" id="email" placeholder="Email Address" class="invalid"/>
+        <input type="password" id="password" placeholder="Password" class="invalid"/>
         
-        <button>
+        <button id='claim_button' class="disabled" disabled>
           Claim your free trial 
         </button>
         
@@ -55,5 +55,8 @@
       </form>
     </section>
   </main>
+  
+  <script src="./main.js"></script>
+
   </body>
   </html>
